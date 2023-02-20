@@ -1,0 +1,25 @@
+<div [ngClass]="auth.currentUser ? 'container' : 'loggedOut'">
+  <div class="content">
+    <div class="head">
+      <h2>Legal notice</h2>
+      <mat-icon *ngIf="!auth.currentUser" routerLink="/">close</mat-icon>
+    </div>
+    <div class="main">
+      <h3>According to 5 TMG</h3>
+      <p>
+        Marco Scherf<br />
+        Sonnenallee 16<br />
+        16321 Bernau bei Berlin
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+        Phone: 01520-3879701<br />
+        E-Mail: info@marcp-scherf.de
+      </p>
+    </div>
+    <div class="footer">
+      <p>Source: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
+    </div>
+  </div>
+</div>

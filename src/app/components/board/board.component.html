@@ -1,0 +1,136 @@
+<main cdkDropListGroup>
+  <header>
+    <div class="headline">
+      <h2>Board</h2>
+
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Find Task"
+          type="text"
+          class="input-search"
+          [(ngModel)]="searchText"
+        />
+        <mat-divider vertical style="height: 15px; margin: 0 5px"></mat-divider>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      class="search-button"
+      type="submit"
+      routerLink="/addtask"
+    >
+      <span>Add task</span><mat-icon>add</mat-icon>
+    </button>
+  </header>
+  <div class="slide-toggle">
+    <mat-slide-toggle color="primary" [(ngModel)]="deleteChecked"
+      >Delete Task</mat-slide-toggle
+    >
+  </div>
+  <div class="mainContainer">
+    <div class="colum-container" *ngFor="let colum of columns">
+      <span class="title" routerLink="/addtask"
+        >{{ colum.name }}
+        <button mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button></span
+      >
+      <div
+        id="{{ colum.name }}"
+        cdkDropList
+        [cdkDropListData]="colum.data[0]"
+        class="colum"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <mat-card
+          *ngFor="let colum of colum.data[0] | filter : searchText"
+          class="task-container"
+          cdkDrag
+          (mousedown)="this.taskid = colum.id"
+          (touchstart)="this.taskid = colum.id"
+        >
+          <div
+            class="task-content"
+            (click)="openDialogTask(colum.id, colum.category, colum.color)"
+          >
+            <mat-card-header class="task-header">
+              <div
+                class="task-category"
+                [style.backgroundColor]="colum.category.color"
+              >
+                {{ colum.category.name }}
+              </div>
+              <div class="task-title">{{ colum.title }}</div>
+            </mat-card-header>
+            <mat-card-content>
+              <p class="task-description">
+                {{ colum.description }}
+              </p>
+            </mat-card-content>
+
+            <section
+              *ngIf="colum.subtasks.length"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 16px 0;
+              "
+              class="progress-bar"
+            >
+              <mat-progress-bar
+                mode="determinate"
+                [value]="(colum.subtaskTrue * 100) / colum.subtasks.length"
+                style="width: 70%"
+              >
+              </mat-progress-bar
+              ><span class="subtask-length"
+                >{{ colum.subtaskTrue }} / {{ colum.subtasks.length }}</span
+              >
+            </section>
+
+            <mat-card-footer
+              style="display: flex; margin: 0; justify-content: space-between"
+            >
+              <div style="display: flex">
+                <div
+                  *ngFor="
+                    let user of colum.assignedTo.slice(0, 3);
+                    let i = index
+                  "
+                  class="task-contacts"
+                  [ngStyle]="{ 'background-color': user.color }"
+                >
+                  <span>
+                    {{ user.firstname.charAt(0) }}{{ user.lastname.charAt(0) }}
+                  </span>
+                </div>
+                <div class="task-contacts" *ngIf="colum.assignedTo.length > 3">
+                  <span>+{{ colum.assignedTo.length - 3 }}</span>
+                </div>
+              </div>
+
+              <div class="prio">
+                <mat-icon *ngIf="colum.prio == 'Urgent'" style="color: #ff3d0f"
+                  >keyboard_double_arrow_up</mat-icon
+                >
+                <mat-icon *ngIf="colum.prio == 'Middle'" style="color: #ffa800"
+                  >drag_handle</mat-icon
+                >
+                <mat-icon *ngIf="colum.prio == 'Low'" style="color: #7ae229"
+                  >keyboard_double_arrow_down</mat-icon
+                >
+              </div>
+            </mat-card-footer>
+          </div>
+          <mat-icon (click)="deleteTask(colum.id)" *ngIf="deleteChecked"
+            >delete</mat-icon
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</main>

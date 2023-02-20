@@ -1,0 +1,218 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px;
+  @media (max-width: 700px) {
+    align-items: flex-start;
+    margin: 50px 30px 30px 30px;
+  }
+  h2 {
+    font-size: 61px;
+    font-weight: 700;
+    margin: 50px 0 0 0;
+    @media (max-width: 650px) {
+      font-size: 47px;
+      margin: 0;
+    }
+  }
+  .headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    @media (max-width: 700px) {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 30px;
+    }
+    ::ng-deep .mat-form-field {
+      .mat-form-field-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .mat-form-field-outline {
+        background-color: white !important;
+      }
+      .mat-form-field-appearance-outline,
+      .mat-form-field-infix {
+        padding: 9px !important;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .search-button {
+    background-color: #2a3647;
+    color: white;
+    @media (max-width: 700px) {
+      span {
+        display: none;
+      }
+    }
+    &:hover {
+      background-color: #27abe3;
+    }
+  }
+}
+.slide-toggle {
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: flex-end;
+  @media (max-width: 700px) {
+    width: calc(100% - 25px);
+  }
+}
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-bar {
+  background-color: #2a3647ab;
+}
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-thumb {
+  background-color: #2a3647;
+}
+
+.mainContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: calc(100vh - 311px);
+  @media (max-width: 900px) {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.colum-container {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 1049px) {
+    padding-bottom: 100px;
+  }
+  @media (max-width: 900px) {
+    width: 100%;
+    padding-bottom: 0;
+    &:last-child {
+      padding-bottom: 100px;
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    width: 80%;
+    cursor: pointer;
+  }
+  .colum {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 220px;
+    width: 95%;
+    // background-color: #fff;
+    margin: 10px;
+    border-radius: 7px;
+    overflow-y: auto;
+    @media (max-width: 900px) {
+      height: 320px;
+    }
+
+    .task-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 21px;
+      background-color: white;
+      margin: 16px;
+      cursor: pointer;
+      .task-content {
+        width: 100%;
+        .task-header {
+          display: flex;
+          flex-direction: column;
+        }
+        .task-title {
+          font-weight: 700;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+        mat-card-content {
+          display: flex;
+          flex-direction: column;
+          max-height: 96px;
+          overflow: hidden;
+          .task-description {
+            color: #a8a8a8;
+            font-size: 16px;
+            line-height: 16px;
+            max-height: 96px;
+            overflow: hidden;
+          }
+        }
+        .task-contacts {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background-color: #0190e0;
+          color: white;
+          font-size: 12px;
+          border: 1px solid #ffffff;
+          margin-left: -6px;
+        }
+
+        .task-contacts:first-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 2px dashed black;
+  background-color: transparent;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  .task-container {
+    display: none;
+  }
+  .task-header {
+    display: none;
+  }
+  .task-title {
+    display: none;
+  }
+  .task-description {
+    display: none;
+  }
+  .task-contacts {
+    display: none;
+  }
+  mat-progress-bar {
+    display: none;
+  }
+  .subtask-length {
+    display: none;
+  }
+  .prio {
+    display: none;
+  }
+}
+
+.mat-dialog-container {
+  width: 520px !important;
+}

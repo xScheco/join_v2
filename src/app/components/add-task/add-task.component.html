@@ -1,0 +1,228 @@
+<main>
+  <header>
+    <h2>Add Task</h2>
+  </header>
+  <form
+    class="form"
+    #form="ngForm"
+    #formDirective="ngForm"
+    (ngSubmit)="form.invalid && (prioError = true) ? null : SaveTask()"
+    (keydown.enter)="$event.preventDefault()"
+  >
+    <div class="form-container">
+      <section class="left-side">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput name="title" [(ngModel)]="tasks.title" required />
+          <mat-error *ngIf="form.invalid">Title is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <div class="description">
+            <textarea
+              matInput
+              name="description"
+              [(ngModel)]="tasks.description"
+              maxlength="500"
+              #description
+              required
+            ></textarea>
+            <span>{{ description.value.length }} / 500</span>
+          </div>
+          <mat-error *ngIf="form.invalid">Description is required</mat-error>
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline" class="category-container">
+            <mat-label>Category</mat-label>
+            <div class="new-category">
+              <input
+                matInput
+                name="category"
+                [(ngModel)]="newCategory.name"
+                *ngIf="!selectNewCategory"
+                required
+                (keydown.enter)="saveCategory()"
+              />
+
+              <div class="new-category-icon">
+                <mat-icon
+                  matSuffix
+                  *ngIf="!selectNewCategory"
+                  (click)="selectNewCategory = true"
+                  >close</mat-icon
+                >
+                <mat-divider
+                  *ngIf="!selectNewCategory"
+                  vertical
+                  style="height: 16px; margin: 0 5px"
+                ></mat-divider>
+                <mat-icon
+                  matSuffix
+                  *ngIf="!selectNewCategory"
+                  (click)="saveCategory()"
+                  >done</mat-icon
+                >
+              </div>
+            </div>
+
+            <mat-select
+              *ngIf="selectNewCategory"
+              [(ngModel)]="tasks.category"
+              name="category"
+              required
+            >
+              <mat-option *ngFor="let category of categorys" [value]="category">
+                <div class="options">
+                  <div class="list-name">
+                    {{ category.name }}
+                    <div
+                      class="main-icon"
+                      [style.backgroundColor]="category.color"
+                    ></div>
+                  </div>
+                  <img
+                    src="assets/img/delete.png"
+                    alt="delte"
+                    *ngIf="category.delete"
+                    (click)="deleteCategory(category.id)"
+                  />
+                </div>
+              </mat-option>
+
+              <mat-option (click)="selectNewCategory = false"
+                >New entry</mat-option
+              >
+            </mat-select>
+
+            <mat-error *ngIf="form.invalid">Category is required</mat-error>
+          </mat-form-field>
+          <div class="category-colors" *ngIf="!selectNewCategory">
+            <div
+              class="main-icon"
+              [class]="colors.name"
+              *ngFor="let colors of categoryColors"
+            >
+              <input
+                type="radio"
+                [value]="colors.color"
+                style="opacity: 0; cursor: pointer"
+                name="radios"
+                [(ngModel)]="newCategory.color"
+                (click)="error = true"
+              />
+            </div>
+            <mat-error *ngIf="!error">Please choose a color </mat-error>
+          </div>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Assigned to</mat-label>
+          <mat-select
+            multiple
+            [(ngModel)]="tasks.assignedTo"
+            name="assignedTo"
+            required
+          >
+            <mat-option *ngFor="let user of users" [value]="user"
+              >{{ user.firstname }} {{ user.lastname }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="form.invalid">Assigned to is required</mat-error>
+        </mat-form-field>
+        <div class="assigned-user">
+          <div
+            class="users"
+            *ngFor="let user of tasks.assignedTo; let i = index"
+            [ngStyle]="{
+              'background-color': user.color
+            }"
+          >
+            {{ user.firstname.charAt(0) }}{{ user.lastname.charAt(0) }}
+          </div>
+        </div>
+      </section>
+      <mat-divider vertical></mat-divider>
+      <section class="right-side">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="dp"
+            name="date"
+            [(ngModel)]="date"
+            required
+          />
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+
+        <div class="prio-container">
+          <div
+            [ngClass]="prio.name"
+            (click)="changePrio(prio.name); prioError = false"
+            *ngFor="let prio of prio; let i = index"
+          >
+            <input
+              type="radio"
+              [id]="prio.name + i"
+              name="radios"
+              [checked]="prio.name === tasks.prio"
+            />
+            <label for="radio1">
+              {{ prio.name }} <mat-icon>{{ prio.icon }}</mat-icon></label
+            >
+          </div>
+        </div>
+        <mat-error *ngIf="prioError">Priority is required</mat-error>
+        <mat-form-field appearance="outline">
+          <mat-label>Subtasks</mat-label>
+          <div class="input-buttons">
+            <input
+              matInput
+              name="subtask"
+              [(ngModel)]="inputSubtask"
+              (click)="this.newSubtask = false"
+              (keydown.enter)="saveSubtask()"
+            />
+            <mat-icon
+              matSuffix
+              *ngIf="newSubtask"
+              (click)="this.newSubtask = false"
+              >add</mat-icon
+            >
+            <mat-icon
+              matSuffix
+              class="icon-size"
+              *ngIf="!newSubtask"
+              (click)="saveSubtask()"
+              >check</mat-icon
+            >
+            <mat-icon matSuffix class="icon-size" *ngIf="!newSubtask"
+              >close</mat-icon
+            >
+          </div>
+        </mat-form-field>
+        <div class="subtasks-container">
+          <div>
+            <ul>
+              <li *ngFor="let item of getKeys(tasks.subtasks); let i = index">
+                <div class="subtask">
+                  {{ tasks.subtasks[item].name }}
+                  <mat-icon (click)="deleteSubtask(i)">delete</mat-icon>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button mat-raised-button class="clear" type="reset">
+            clear<mat-icon>close</mat-icon>
+          </button>
+          <button mat-raised-button class="create" type="submit">
+            Create Task<mat-icon>done</mat-icon>
+          </button>
+        </div>
+      </section>
+    </div>
+  </form>
+</main>

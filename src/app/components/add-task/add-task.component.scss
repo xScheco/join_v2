@@ -1,0 +1,119 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: calc(100vh - 140px);
+  padding-top: 50px;
+  header,
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    h2 {
+      font-size: 61px;
+      font-weight: 700;
+      @media (max-width: 650px) {
+        font-size: 47px;
+      }
+    }
+    .form-container {
+      display: flex;
+      @media (max-width: 900px) {
+        flex-direction: column;
+      }
+    }
+    .left-side,
+    .right-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 40%;
+      height: 350px;
+      @media (max-width: 900px) {
+        width: 100%;
+        height: unset;
+      }
+      .category-container {
+        width: 100%;
+        .new-category {
+          display: flex;
+          .new-category-icon {
+            display: flex;
+            mat-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 14px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .input-buttons {
+        display: flex;
+      }
+      .description {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        textarea {
+          height: 80px;
+          resize: none;
+          span {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+    .mat-divider {
+      height: 340px;
+      margin: 0 60px;
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+
+    .subtasks-container {
+      min-height: 100px;
+      overflow-y: auto;
+      .subtask {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        mat-icon {
+          cursor: pointer;
+        }
+      }
+    }
+    .form-buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 60px 0 100px 0;
+      button {
+        margin: 8px;
+      }
+    }
+  }
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .list-name {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    width: 24px;
+  }
+  .main-icon {
+    margin-left: 16px;
+  }
+}
+
+.icon-size {
+  font-size: 14px;
+}

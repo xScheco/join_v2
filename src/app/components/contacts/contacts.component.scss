@@ -1,0 +1,53 @@
+.contact-container {
+  display: flex;
+  height: calc(100vh - 89px);
+  @media (max-width: 1049px) {
+    margin-bottom: 100px;
+  }
+  .contacts-list {
+    overflow-y: auto;
+    background-color: white;
+    padding: 16px;
+    @media (max-width: 903px) {
+      width: 100%;
+    }
+    mat-list {
+      @media (max-width: 1049px) {
+        margin-bottom: 100px;
+      }
+    }
+    mat-list-item {
+      width: 80%;
+      transition: padding 126ms ease-in;
+      @media (max-width: 903px) {
+        width: 100%;
+      }
+    }
+    .user {
+      margin: 16px 0;
+      cursor: pointer;
+      padding: 5px;
+      &:hover {
+        background-color: #dddddd;
+        border-radius: 4px;
+      }
+    }
+    .task-contacts {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      min-height: 42px;
+      min-width: 42px;
+      color: white;
+      margin: 0 16px;
+    }
+  }
+}
+.link-active {
+  background-color: #091931 !important;
+  color: white;
+  border-radius: 4px;
+  padding: 10px !important;
+  transition: padding 125ms ease-out;
+}

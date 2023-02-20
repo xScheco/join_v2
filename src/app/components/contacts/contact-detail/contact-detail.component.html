@@ -1,0 +1,64 @@
+<div class="contact-detail-container">
+  <header>
+    <h2>Contacts</h2>
+    <span>Better with a team</span>
+    <mat-icon class="close-mobile" routerLink="/contacts">close</mat-icon>
+  </header>
+  <section>
+    <ng-container *ngIf="selectedContact">
+      <div class="contact-name">
+        <div
+          class="task-contacts"
+          [ngStyle]="{
+            'background-color': selectedContact.color
+          }"
+        >
+          <span>
+            {{ selectedContact.firstname.charAt(0)
+            }}{{ selectedContact.lastname.charAt(0) }}
+          </span>
+        </div>
+        <div class="full-name">
+          <span
+            >{{ selectedContact.firstname }}
+            {{ selectedContact.lastname }}</span
+          >
+          <a routerLink="/addtask"><mat-icon>add</mat-icon> Add Task</a>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="header">
+          <h3>Contact Information</h3>
+        </div>
+        <div class="contact-email">
+          <span>Email</span>
+          <a href="#">{{ selectedContact.email }}</a>
+        </div>
+        <div class="contact-phone">
+          <span>Phone</span>
+          {{ selectedContact.phone }}
+        </div>
+        <div class="buttons">
+          <button
+            mat-raised-button
+            class="clear"
+            (click)="deleteContact()"
+            *ngIf="delete"
+          >
+            <mat-icon>delete</mat-icon> <span>Delte Contact</span>
+          </button>
+          <button mat-raised-button class="create" (click)="openEditDialog()">
+            <mat-icon>edit</mat-icon> <span>Edit Contact</span>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </section>
+  <button
+    mat-raised-button
+    class="create new-contact"
+    (click)="openAddDialog()"
+  >
+    New contact<mat-icon>person_add</mat-icon>
+  </button>
+</div>

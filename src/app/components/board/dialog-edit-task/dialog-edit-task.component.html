@@ -1,0 +1,176 @@
+<mat-dialog-content>
+  <header>
+    <h2>Edit Task</h2>
+    <mat-icon (click)="closeDialog()">close</mat-icon>
+  </header>
+  <form
+    class="edit-form"
+    #form="ngForm"
+    #formDirective="ngForm"
+    (keydown.enter)="$event.preventDefault()"
+  >
+    <div class="title-category-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          name="title"
+          [defaultValue]="data.task.title"
+          [(ngModel)]="task.title"
+        />
+      </mat-form-field>
+      <div class="category-container">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ task.category.name }}</mat-label>
+          <mat-select name="category" [(ngModel)]="task.category">
+            <mat-option
+              *ngFor="let category of defaultCategorys"
+              [value]="category"
+            >
+              <div class="options">
+                {{ category.name }}
+                <div
+                  class="main-icon"
+                  [style.backgroundColor]="category.color"
+                ></div>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        class="description"
+        name="description"
+        [defaultValue]="data.task.description"
+        [(ngModel)]="task.description"
+      ></textarea>
+    </mat-form-field>
+    <div class="user-date-container">
+      <div class="users-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Assigned to</mat-label>
+          <mat-select
+            multiple
+            name="assignedTo"
+            [(ngModel)]="task.assignedTo"
+            [compareWith]="compareUser"
+          >
+            <mat-option *ngFor="let user of user" [value]="user"
+              >{{ user.firstname }} {{ user.lastname }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="assigned-user">
+          <div
+            class="users"
+            *ngFor="let user of this.task.assignedTo; let i = index"
+            [ngStyle]="{
+              'background-color': user.color
+            }"
+          >
+            {{ user.firstname.charAt(0) }}{{ user.lastname.charAt(0) }}
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>{{ this.data.task.date | date }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dp"
+          placeholder="Verbose datepicker"
+          name="date"
+          [(ngModel)]="this.data.task.date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="prio-container">
+      <div
+        [ngClass]="prio.name"
+        (click)="changePrio(prio.name)"
+        *ngFor="let prio of prio; let i = index"
+      >
+        <input
+          type="radio"
+          [id]="prio.name + i"
+          name="radios"
+          [value]="prio.name"
+          [checked]="prio.name === this.data.task.prio"
+        />
+        <label for="radio1">
+          {{ prio.name }} <mat-icon>{{ prio.icon }}</mat-icon></label
+        >
+      </div>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Subtasks</mat-label>
+
+      <div
+        class="input-buttons"
+        style="display: flex"
+        (click)="newSubtask = true"
+      >
+        <input
+          matInput
+          name="inputSubtask"
+          [(ngModel)]="inputSubtask"
+          type="text"
+          (keydown.enter)="saveSubtask()"
+        />
+        <mat-icon matSuffix *ngIf="!newSubtask">add</mat-icon>
+        <mat-icon
+          matSuffix
+          style="font-size: 14px"
+          *ngIf="newSubtask"
+          (click)="saveSubtask(); newSubtask = false"
+          >check</mat-icon
+        >
+        <mat-icon
+          matSuffix
+          style="font-size: 14px"
+          *ngIf="newSubtask"
+          (click)="inputSubtask = ''"
+          >close</mat-icon
+        >
+      </div>
+    </mat-form-field>
+    <mat-error *ngIf="subtaskError">Please enter a Subtask</mat-error>
+    <div class="subtasks-container">
+      <div *ngFor="let subtask of task.subtasks; let i = index">
+        <div class="left">
+          <mat-checkbox
+            name="subtask"
+            [checked]="subtask.checked"
+            color="primary"
+            (click)="changeCheckedSubtask(i)"
+            >{{ subtask.name }}</mat-checkbox
+          >
+        </div>
+        <div class="right">
+          <mat-icon
+            matTooltip="Delete Subtask"
+            matTooltipPosition="above"
+            style="color: slategrey"
+            (click)="deleteSubtask(i)"
+            >delete</mat-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="form-buttons">
+      <button mat-raised-button class="clear" (click)="closeDialog()">
+        Close<mat-icon>close</mat-icon>
+      </button>
+      <button mat-raised-button class="create" (click)="saveEditTask()">
+        Save<mat-icon>done</mat-icon>
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

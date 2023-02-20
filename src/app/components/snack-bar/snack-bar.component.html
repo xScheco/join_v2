@@ -1,0 +1,7 @@
+<div class="container">
+  <mat-icon [ngClass]="data.error ? 'warn' : 'successful'">{{
+    data.error ? "warning" : "done"
+  }}</mat-icon>
+  <!-- <mat-icon class="warn">warning</mat-icon> -->
+  <span matSnackBarLabel (click)="close()"> {{ data.message }} </span>
+</div>

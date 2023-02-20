@@ -1,0 +1,100 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  mat-icon {
+    cursor: pointer;
+  }
+}
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+  .bold {
+    font-weight: bold;
+  }
+  .mr-25 {
+    margin-right: 25px;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 32px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 16px;
+    max-height: 125px;
+    overflow: hidden;
+  }
+  .description-read-more {
+    max-height: 100%;
+  }
+  .read-more {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 25px);
+    cursor: pointer;
+    &:hover {
+      color: rgb(146, 146, 146);
+    }
+  }
+  .priority {
+    display: flex;
+    align-items: center;
+    .priority-btn {
+      display: flex;
+      align-items: center;
+      padding: 4px 18px;
+      border-radius: 4px;
+      color: white;
+    }
+    .Urgent {
+      background-color: #ff3d0f;
+    }
+    .Middle {
+      background-color: #ffa800;
+    }
+    .Low {
+      background-color: #7ae229;
+    }
+  }
+
+  .users-container,
+  .subtasks-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 125px;
+    padding: 10px 20px;
+    gap: 10px;
+    overflow: auto;
+    .user {
+      display: flex;
+      align-items: center;
+      .user-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #0190e0;
+        color: white;
+        font-size: 12px;
+        margin-right: 25px;
+      }
+    }
+  }
+  .edit-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    button {
+      background-color: #2a3647;
+      color: white;
+      &:hover {
+        background-color: #0190e0;
+      }
+    }
+  }
+}

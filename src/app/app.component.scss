@@ -1,0 +1,14 @@
+.sidebar {
+  position: fixed;
+}
+.content {
+  @media (max-width: 1049px) {
+    width: 100%;
+  }
+}
+.ml-200 {
+  margin-left: 200px;
+  @media (max-width: 1049px) {
+    margin-left: 0;
+  }
+}

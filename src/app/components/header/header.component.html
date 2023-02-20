@@ -1,0 +1,58 @@
+<mat-toolbar>
+  <div class="login" *ngIf="!this.auth.currentUser">
+    <div class="left">
+      <img
+        class="logo-img"
+        src="assets/img/logo.png"
+        alt="logo"
+        routerLink="/"
+        style="cursor: pointer"
+      />
+    </div>
+    <div class="right">
+      Not a Join user ?
+      <button
+        mat-raised-button
+        class="signup-btn"
+        (click)="this.router.navigate(['signup'])"
+      >
+        Sign up
+      </button>
+    </div>
+  </div>
+  <div class="user" *ngIf="this.auth.currentUser">
+    <div class="left">
+      <img
+        src="assets/img/logo.png"
+        alt="logo"
+        class="user-logo"
+        routerLink="/"
+        style="cursor: pointer"
+      />
+      <span class="user-headline">Kanban Project Management Tool</span>
+    </div>
+
+    <div class="user-right">
+      <button mat-icon-button routerLink="/help">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+      <img
+        src="assets/img/profil.png"
+        alt="profil"
+        [matMenuTriggerFor]="userOptions"
+      />
+      <mat-menu #userOptions="matMenu">
+        <button mat-menu-item class="mobile" routerLink="/help">Help</button>
+        <button mat-menu-item class="mobile" routerLink="/legalnotice">
+          Legal notice
+        </button>
+        <button mat-menu-item class="mobile" routerLink="/privacy">
+          Privacy policy
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

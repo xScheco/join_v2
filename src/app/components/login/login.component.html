@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="center">
+    <mat-card>
+      <mat-card-header class="header">
+        <mat-card-title class="title">Log in</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="content" [formGroup]="loginForm">
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+              required
+            />
+            <mat-icon matSuffix>mail_outline</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              (keydown.enter)="signIn()"
+            />
+            <mat-icon matSuffix>lock_outline</mat-icon>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <div class="link">
+          <div class="signup-mobile">
+            Not a Join user ?
+            <button mat-raised-button class="signup-btn" routerLink="/signup">
+              Sign up
+            </button>
+          </div>
+          <a mat-button (click)="openDialogForgetPassword()"
+            >Forgot my password</a
+          >
+        </div>
+        <mat-card-actions class="btn">
+          <button mat-raised-button class="login-btn" (click)="signIn()">
+            Log in
+          </button>
+          <button mat-stroked-button class="guest-btn" (click)="anonymSignIn()">
+            Guest Log in
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

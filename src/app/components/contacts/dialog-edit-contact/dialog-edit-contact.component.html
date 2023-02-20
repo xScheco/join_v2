@@ -1,0 +1,58 @@
+<div class="edit-container">
+  <div class="right-side">
+    <div class="mobile">
+      <img src="assets/img/logo_white.png" alt="" />
+      <h2>Edit contact</h2>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <div class="left-side">
+    <div class="contact-logo" [style.backgroundColor]="data.user.color">
+      {{ data.user.firstname.charAt(0) }}{{ data.user.lastname.charAt(0) }}
+    </div>
+    <mat-icon class="close" (click)="dialogRef.close()">close</mat-icon>
+    <form #form="ngForm" #formDirective="ngForm" (ngSubmit)="updateUser()">
+      <mat-form-field appearance="outline">
+        <mat-label>Firstname</mat-label>
+        <input
+          matInput
+          name="firstname"
+          [(ngModel)]="data.user.firstname"
+          required
+        />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="form.invalid">Firstname is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Lastname</mat-label>
+        <input
+          matInput
+          name="lastname"
+          [(ngModel)]="data.user.lastname"
+          required
+        />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="form.invalid">Lastname is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          name="email"
+          [(ngModel)]="data.user.email"
+          type="email"
+          required
+        />
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error *ngIf="form.invalid">Email is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput name="phone" [(ngModel)]="data.user.phone" required />
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="form.invalid">Phone is required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button class="create" type="submit">Save</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="contact-container">
+  <div class="contacts-list">
+    <mat-list>
+      <ng-container *ngFor="let group of groupedUsers">
+        <mat-list-item>
+          <mat-icon mat-list-icon>{{ group.letter }}</mat-icon>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+        <mat-list-item
+          class="user"
+          *ngFor="let user of group.users; let i = index"
+          (click)="isMobile ? null : showContactDetails(user)"
+          [routerLink]="isMobile ? ['/contact-detail', user.id] : null"
+          [ngClass]="{ 'link-active': user.isActive }"
+        >
+          <div
+            class="task-contacts"
+            [ngStyle]="{
+              'background-color': user.color
+            }"
+          >
+            <span>
+              {{ user.firstname.charAt(0).toUpperCase()
+              }}{{ user.lastname.charAt(0).toUpperCase() }}
+            </span>
+          </div>
+
+          {{ user.firstname }} {{ user.lastname }} <br />
+          {{ user.email }}
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </div>
+  <ng-container *ngIf="!isMobile">
+    <app-contact-detail
+      [selectedContact]="selectedContact"
+    ></app-contact-detail>
+  </ng-container>
+</div>

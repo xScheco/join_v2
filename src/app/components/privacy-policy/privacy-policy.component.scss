@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 100px 0;
+  .content {
+    width: 80%;
+    h2 {
+      font-size: 61px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      @media (max-width: 650px) {
+        font-size: 47px;
+        margin-bottom: 25px;
+      }
+      @media (max-width: 390px) {
+        font-size: 35px;
+      }
+    }
+  }
+}

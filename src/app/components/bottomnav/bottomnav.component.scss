@@ -1,0 +1,26 @@
+.toolbar {
+  background-color: #2a3647;
+  color: white;
+  display: flex;
+  position: fixed;
+  height: 89px;
+  width: 100%;
+  bottom: 0;
+  justify-content: space-around;
+  div {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    span {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}

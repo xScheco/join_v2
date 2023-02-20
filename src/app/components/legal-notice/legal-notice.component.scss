@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  .content {
+    width: 80%;
+    .head {
+      h2 {
+        font-size: 61px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        @media (max-width: 650px) {
+          font-size: 47px;
+          margin-bottom: 25px;
+        }
+      }
+    }
+  }
+}
+
+.loggedOut {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    margin: 50px;
+    .head {
+      display: flex;
+      gap: 80px;
+    }
+  }
+}

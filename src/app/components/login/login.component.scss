@@ -1,0 +1,104 @@
+.container {
+  background-color: #f7f8f9;
+  height: calc(100vh - 89px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 128px);
+    mat-card {
+      width: 625px;
+      @media (max-width: 914px) {
+        width: 80vw;
+        padding: 8px 32px;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        .title {
+          font-size: 32px;
+          padding: 16px 0;
+          font-weight: bold;
+          border-bottom: 2px solid #27abe3;
+        }
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        mat-form-field {
+          width: 60%;
+          @media (max-width: 914px) {
+            width: 100%;
+          }
+        }
+      }
+      .link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media (max-width: 914px) {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: flex-end;
+          padding: 0 0 16px 20px;
+          gap: 8px;
+        }
+        .signup-mobile {
+          display: none;
+          @media (max-width: 576px) {
+            display: flex;
+            align-items: center;
+            .signup-btn {
+              margin-left: 16px;
+              background-color: #2b3748;
+              color: white;
+              &:hover {
+                background-color: #27abe3;
+              }
+            }
+          }
+        }
+        a {
+          color: #27abe3;
+          @media (max-width: 914px) {
+            padding: 0;
+          }
+          &:hover {
+            background: white !important;
+          }
+        }
+      }
+      .btn {
+        display: flex;
+        justify-content: center;
+        @media (max-width: 914px) {
+          flex-direction: column;
+          align-items: center;
+        }
+        button {
+          width: 120px;
+        }
+        .login-btn {
+          background-color: #2b3748;
+          color: white;
+          @media (max-width: 914px) {
+            margin-bottom: 16px;
+          }
+          &:hover {
+            background-color: #27abe3;
+          }
+        }
+        .guest-btn {
+          &:hover {
+            color: #27abe3;
+            border-color: #27abe3;
+          }
+        }
+      }
+    }
+  }
+}

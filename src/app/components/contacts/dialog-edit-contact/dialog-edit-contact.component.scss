@@ -1,0 +1,85 @@
+.edit-container {
+  display: flex;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35%;
+    background-color: #2a3647;
+    padding-left: 40px;
+    @media (max-width: 1000px) {
+      align-items: center;
+      width: 100%;
+    }
+    .mobile {
+      @media (max-width: 1000px) {
+        padding: 50px;
+      }
+    }
+    img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 35px;
+      color: white;
+    }
+    mat-divider {
+      width: 90px;
+      border: 1px solid #29abe2;
+    }
+  }
+  .left-side {
+    position: relative;
+    display: flex;
+    align-items: center;
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      position: unset;
+    }
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+      @media (max-width: 1000px) {
+        color: white;
+      }
+    }
+    .contact-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80px;
+      min-width: 80px;
+      border-radius: 50%;
+      font-weight: 500;
+      font-size: 35px;
+      color: white;
+      margin-left: 50px;
+      @media (max-width: 1000px) {
+        margin-top: -40px;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 30px 30px 30px 50px;
+      button {
+        @media (max-width: 1000px) {
+          margin-bottom: 50px;
+        }
+      }
+    }
+  }
+}
+.mat-icon {
+  color: #a8a8a8;
+}

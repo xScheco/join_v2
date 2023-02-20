@@ -1,0 +1,87 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  h2 {
+    margin: 0;
+  }
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .title-category-container,
+  .user-date-container {
+    display: flex;
+    gap: 20px;
+    mat-form-field,
+    .users-container {
+      width: 50%;
+    }
+  }
+  .category-container {
+    width: 50%;
+    mat-form-field {
+      width: 100%;
+      .new-category {
+        display: flex;
+        .new-category-icon {
+          display: flex;
+          align-items: center;
+          mat-divider {
+            height: 16px;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+  }
+  .description {
+    height: 100px;
+    resize: none;
+  }
+  .users-container {
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  .form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .subtasks-container {
+    .ng-star-inserted {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .left {
+      display: flex;
+    }
+    .right {
+      margin-right: 25px;
+      mat-icon {
+        color: #5d7699;
+        cursor: pointer;
+        &:hover {
+          color: #27abe3 !important;
+          transform: rotate(5deg);
+          transition: transform 225ms ease-in-out;
+        }
+      }
+    }
+  }
+}
+.options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

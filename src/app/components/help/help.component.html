@@ -1,0 +1,89 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="title"> Help </mat-card-title>
+      <mat-card-subtitle
+        >Here you will find information and instructions on the various features
+        available in this application.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div>
+        <h3 (click)="join = !join">
+          <mat-icon>{{ join ? "expand_less" : "expand_more" }}</mat-icon
+          >What is Join?
+        </h3>
+        <p *ngIf="join">
+          Join is a bussiness-oriented tool that focuses on helping a team (or
+          an individual) keep track of business projects. The application offers
+          the possibility of a summarized overview through the "Summary"
+          section, followed by a more detailed area, such as the "Board"
+          section. If it is necessary to insert additional tasks for the team,
+          the team leader has the possibility to create them via the "Add Task"
+          section or directly on the "Board" section. In addition, the "Contact"
+          section offers the possibility to store the contact data of the
+          members individually.
+        </p>
+      </div>
+      <div>
+        <h3 (click)="summary = !summary">
+          <mat-icon>{{ summary ? "expand_less" : "expand_more" }}</mat-icon
+          >Summary
+        </h3>
+        <p *ngIf="summary">
+          The Summary page provides an overview of all your tasks listed by
+          categories: To-do, In Progress, Await Feedback, and Done. For each
+          category, the number of tasks in that category is displayed.
+          Additionally, the oldest task with its corresponding date (upcoming
+          date) is displayed on the home page. This way, you always have a quick
+          overview of your upcoming tasks.
+        </p>
+      </div>
+      <div>
+        <h3 (click)="board = !board" board>
+          <mat-icon>{{ board ? "expand_less" : "expand_more" }}</mat-icon
+          >Board
+        </h3>
+        <p *ngIf="board">
+          The board is a visual tool that allows you to categorize your tasks
+          into different columns: To-do, In Progress, Await Feedback, and Done.
+          Each task can be moved to the appropriate column by simply dragging
+          and dropping it. To get more details about a task, simply click on it.
+          This opens a detailed view where you can edit or delete the task. It
+          is also possible to add subtasks and mark them as completed.
+        </p>
+      </div>
+      <div>
+        <h3 (click)="task = !task">
+          <mat-icon>{{ task ? "expand_less" : "expand_more" }}</mat-icon
+          >Add Task
+        </h3>
+        <p *ngIf="task">
+          To create a new task, click on the "Add Task" button. Enter a title,
+          description, category, assignee, due date, and priority for the task
+          and add subtasks if necessary. Once the task is created, you can move
+          it to the desired category on the board by dragging and dropping it.
+        </p>
+      </div>
+      <div>
+        <h3 (click)="contact = !contact">
+          <mat-icon>{{ contact ? "expand_less" : "expand_more" }}</mat-icon
+          >Contact
+        </h3>
+        <p *ngIf="contact">
+          The Contacts page provides a detailed overview of all your contacts.
+          Here, you can create new contacts, edit existing ones, and delete your
+          own contact. To create a new contact, click on the "New Contact"
+          button. Enter the name, email address, and any relevant information
+          for the contact. Once the contact has been created, it will appear in
+          the list of contacts. To edit an existing contact, simply click on the
+          name of the contact in the list. This opens a detailed view of the
+          contact, where you can see all the information. If you want to edit
+          the contact, click on the "Edit Contact" button. If you want to delete
+          your own contact, click on the "Delete Contact" button.
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

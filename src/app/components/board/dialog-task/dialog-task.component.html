@@ -1,0 +1,79 @@
+<main>
+  <header>
+    <div
+      class="task-category"
+      [style.backgroundColor]="this.data.category.color"
+    >
+      {{ this.data.category.name }}
+    </div>
+    <mat-icon (click)="this.dialogRef.close()">close</mat-icon>
+  </header>
+  <section>
+    <div class="title">
+      {{ task.title }}
+    </div>
+    <div
+      class="description"
+      [ngClass]="{ 'description-read-more': checkedRead }"
+    >
+      {{ task.description }}
+    </div>
+    <div class="date">
+      <span class="bold mr-25">Due date: </span
+      >{{ task.date | date : "dd-MM-yyyy" }}
+    </div>
+    <div class="priority">
+      <span class="bold mr-25">Priority: </span>
+      <div class="priority-btn mr-25" [ngClass]="task.prio">
+        {{ task.prio }}
+        <mat-icon>keyboard_double_arrow_up</mat-icon>
+      </div>
+    </div>
+    <span>Subtasks</span>
+    <div class="subtasks-container">
+      <div *ngFor="let item of task.subtasks; let i = index">
+        <mat-checkbox
+          [checked]="item.checked"
+          color="primary"
+          (click)="changeCheckedSubtask(i)"
+        >
+          {{ item.name }}</mat-checkbox
+        >
+      </div>
+    </div>
+    <span class="bold">Assigned To:</span>
+    <div class="users-container">
+      <div class="users" *ngFor="let user of task.assignedTo; let i = index">
+        <div class="user">
+          <div
+            class="user-icon"
+            [ngStyle]="{
+              'background-color': user.color
+            }"
+          >
+            {{ user.firstname.charAt(0) }}{{ user.lastname.charAt(0) }}
+          </div>
+          <div class="user-name">{{ user.firstname }} {{ user.lastname }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="edit-buttons">
+      <button
+        mat-raised-button
+        (click)="deleteTask()"
+        matTooltip="Delete Task"
+        matTooltipPosition="above"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        (click)="openDialogEditTask()"
+        matTooltip="Edit Task"
+        matTooltipPosition="above"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </section>
+</main>

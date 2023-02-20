@@ -1,0 +1,216 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 140px);
+  padding-top: 50px;
+
+  mat-card {
+    margin: 0;
+    cursor: pointer;
+    @media (max-width: 530px) {
+      padding: 8px;
+    }
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    width: 80%;
+    margin-bottom: 50px;
+    @media (max-width: 650px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    h2 {
+      font-size: 61px;
+      font-weight: 700;
+      margin: 0;
+      @media (max-width: 650px) {
+        font-size: 47px;
+        margin-bottom: 20px;
+      }
+    }
+    .line {
+      height: 59px;
+      border: 3px solid #29abe2;
+      margin: 0 30px;
+      @media (max-width: 650px) {
+        position: absolute;
+        width: 0px;
+        height: 90px;
+        left: 16px;
+        top: 50px;
+        border: 3px solid #29abe2;
+        transform: rotate(90deg);
+      }
+    }
+    span {
+      display: inline-flex;
+      align-items: center;
+      height: 59px;
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 32px;
+      @media (max-width: 650px) {
+        font-size: 21px;
+      }
+    }
+  }
+  .summary-content {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    @media (max-width: 1049px) {
+      padding-bottom: 150px;
+    }
+    @media (max-width: 800px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+    .summary-detail-container {
+      max-width: 580px;
+
+      .summary-task-container {
+        display: flex;
+        margin-bottom: 32px;
+        mat-card-title {
+          font-size: 64px;
+          font-weight: 600;
+          line-height: 76.8px;
+          @media (max-width: 530px) {
+            font-size: 35px;
+            line-height: 30px;
+          }
+        }
+        p {
+          text-align: center;
+          font-size: 21px;
+          font-weight: 400;
+
+          @media (max-width: 530px) {
+            font-size: 14px;
+          }
+        }
+        .center {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .tasks-board,
+        .tasks-progress {
+          margin-right: 35px;
+
+          @media (max-width: 530px) {
+            margin-right: 10px;
+          }
+        }
+      }
+      .summary-urgency-container {
+        margin-bottom: 35px;
+        .urgency-card {
+          display: flex;
+          align-items: center;
+          mat-card-header {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-items: center;
+
+            mat-card-title {
+              text-align: center;
+              font-size: 47px;
+              font-weight: 600;
+              padding: 24px 0 8px 0;
+            }
+            button {
+              cursor: default;
+              height: 60px;
+              width: 60px;
+              @media (max-width: 530px) {
+                height: 40px;
+                width: 40px;
+              }
+            }
+          }
+          .line {
+            height: 59px;
+            border: 2px solid #d1d1d1;
+            margin: 0 30px;
+          }
+          mat-card-content {
+            display: flex;
+            flex-direction: column;
+            .headline {
+              font-size: 21px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      .summary-toDo-container {
+        display: flex;
+        justify-content: space-between;
+        button {
+          background-color: #2a3647;
+        }
+        mat-card {
+          display: flex;
+          align-items: center;
+          height: 100px;
+          width: 40%;
+          button {
+            height: 60px;
+            width: 60px;
+            @media (max-width: 530px) {
+              height: 40px;
+              width: 40px;
+            }
+          }
+          mat-card-header {
+            height: 30px;
+            mat-card-title {
+              height: 35px;
+              font-size: 64px;
+
+              @media (max-width: 530px) {
+                font-size: 47px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .summary-greeting {
+      margin-left: 67px;
+      @media (max-width: 800px) {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: 0;
+        height: 50px;
+      }
+      h2 {
+        font-size: 47px;
+        font-weight: 500;
+        line-height: 56px;
+        @media (max-width: 800px) {
+          font-size: 21px;
+          margin: 0;
+        }
+      }
+      span {
+        font-size: 67px;
+        font-weight: 700;
+        line-height: 76px;
+        color: #29abe2;
+        @media (max-width: 800px) {
+          font-size: 21px;
+        }
+      }
+    }
+  }
+}

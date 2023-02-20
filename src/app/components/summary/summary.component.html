@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <div class="head">
+    <h2>Summary</h2>
+    <div class="line"></div>
+    <span>Everything in a nutshell!</span>
+  </div>
+
+  <section class="summary-content">
+    <div class="summary-detail-container">
+      <div class="summary-task-container">
+        <mat-card class="tasks-board center" routerLink="/board">
+          <mat-card-header>
+            <mat-card-title>{{ tasks.length }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Tasks in Board</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="tasks-progress center" routerLink="/board">
+          <mat-card-header>
+            <mat-card-title>{{ progress }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Tasks in Progress</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="tasks-feedback center" routerLink="/board">
+          <mat-card-header>
+            <mat-card-title>{{ feedback }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Awaiting Feedback</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="summary-urgency-container" routerLink="/board">
+        <mat-card class="urgency-card">
+          <mat-card-header>
+            <button mat-mini-fab color="warn">
+              <mat-icon>keyboard_double_arrow_up</mat-icon>
+            </button>
+            <mat-card-title>{{ urgentLength }}</mat-card-title>
+            <mat-card-subtitle>Urgent</mat-card-subtitle>
+          </mat-card-header>
+          <div class="line"></div>
+          <mat-card-content>
+            <span class="headline" *ngIf="upcoming">{{
+              upcoming.date | date : "dd.MM.yyyy"
+            }}</span>
+            <span>Upcoming Deadline</span>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="summary-toDo-container">
+        <mat-card class="to-container" routerLink="/board">
+          <button mat-mini-fab>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <mat-card-header>
+            <mat-card-title>{{ todo }}</mat-card-title>
+            <mat-card-subtitle>To-do</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <mat-card class="done-container" routerLink="/board">
+          <button mat-mini-fab>
+            <mat-icon>done</mat-icon>
+          </button>
+          <mat-card-header>
+            <mat-card-title>{{ done }}</mat-card-title>
+            <mat-card-subtitle>Done</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+    <div class="summary-greeting">
+      <h2>{{ greetingMessage }},</h2>
+      <span *ngIf="this.auth.currentUser">{{
+        this.auth.currentUser.displayName
+      }}</span>
+    </div>
+  </section>
+</div>
